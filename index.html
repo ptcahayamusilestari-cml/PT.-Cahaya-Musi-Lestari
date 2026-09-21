@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PT. Cahaya Musi Lestari</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#263238;
+    background:#f7faf9;
+    line-height:1.7;
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.navbar{
+    max-width:1150px;
+    margin:auto;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:bold;
+    color:#0b6b57;
+    font-size:18px;
+}
+
+.logo-circle{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#0b6b57,#d5a928);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-weight:bold;
+}
+
+nav a{
+    text-decoration:none;
+    color:#344;
+    margin-left:22px;
+    font-size:14px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#0b8068;
+}
+
+.hero{
+    min-height:100vh;
+    padding:150px 25px 80px;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(rgba(5,64,52,.88),rgba(5,64,52,.78)),
+    linear-gradient(135deg,#0b6b57,#173f36);
+    color:white;
+}
+
+.hero-content{
+    max-width:1100px;
+    margin:auto;
+    width:100%;
+}
+
+.badge{
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+    padding:7px 16px;
+    border-radius:30px;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(38px,6vw,70px);
+    line-height:1.1;
+    max-width:850px;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#f1c84b;
+}
+
+.hero p{
+    max-width:700px;
+    font-size:18px;
+    opacity:.92;
+    margin-bottom:32px;
+}
+
+.buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 23px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#f1c84b;
+    color:#26351f;
+}
+
+.btn-secondary{
+    border:1px solid white;
+    color:white;
+}
+
+section{
+    padding:90px 25px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title small{
+    color:#0b8068;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:36px;
+    margin-top:8px;
+    color:#183d35;
+}
+
+.about{
+    background:white;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:45px;
+    align-items:center;
+}
+
+.about-text p{
+    margin-bottom:16px;
+}
+
+.info-box{
+    background:#f0f7f4;
+    border-left:5px solid #0b8068;
+    padding:25px;
+    border-radius:12px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:white;
+    padding:30px 25px;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,.07);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+}
+
+.icon{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    background:#e5f3ef;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    color:#155c4d;
+    margin-bottom:10px;
+}
+
+.legal{
+    background:#eef6f3;
+}
+
+.legal-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.legal-item{
+    background:white;
+    padding:22px;
+    border-radius:14px;
+}
+
+.legal-item strong{
+    display:block;
+    color:#0b6b57;
+    margin-bottom:5px;
+}
+
+.contact{
+    background:#123f35;
+    color:white;
+}
+
+.contact .section-title h2{
+    color:white;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.contact-card{
+    background:rgba(255,255,255,.09);
+    padding:25px;
+    border-radius:16px;
+}
+
+.contact-card h3{
+    color:#f1c84b;
+    margin-bottom:8px;
+}
+
+footer{
+    background:#092b25;
+    color:white;
+    text-align:center;
+    padding:25px;
+    font-size:14px;
+}
+
+.whatsapp{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:27px;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    z-index:999;
+}
+
+@media(max-width:800px){
+    nav{
+        display:none;
+    }
+
+    .about-grid,
+    .cards,
+    .legal-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding-top:130px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    section{
+        padding:70px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="navbar">
+
+<div class="logo">
+<div class="logo-circle">CML</div>
+PT. CAHAYA MUSI LESTARI
+</div>
+
+<nav>
+<a href="#beranda">Beranda</a>
+<a href="#tentang">Tentang</a>
+<a href="#layanan">Layanan</a>
+<a href="#legalitas">Legalitas</a>
+<a href="#kontak">Kontak</a>
+</nav>
+
+</div>
+</header>
+
+
+<section class="hero" id="beranda">
+<div class="hero-content">
+
+<div class="badge">PROFESIONAL • TERPERCAYA • BERKUALITAS</div>
+
+<h1>
+PT. <span>Cahaya Musi Lestari</span>
+</h1>
+
+<p>
+Mitra profesional dalam memberikan layanan jasa yang
+mengutamakan kualitas, ketepatan, integritas, dan kepuasan klien.
+</p>
+
+<div class="buttons">
+<a href="#tentang" class="btn btn-primary">Kenali Perusahaan</a>
+<a href="#kontak" class="btn btn-secondary">Hubungi Kami</a>
+</div>
+
+</div>
+</section>
+
+
+<section class="about" id="tentang">
+<div class="container">
+
+<div class="section-title">
+<small>Tentang Kami</small>
+<h2>Membangun Kepercayaan</h2>
+</div>
+
+<div class="about-grid">
+
+<div class="about-text">
+
+<p>
+<strong>PT. Cahaya Musi Lestari</strong> merupakan perusahaan
+yang berkomitmen memberikan pelayanan profesional dengan
+mengedepankan kualitas, integritas, dan tanggung jawab.
+</p>
+
+<p>
+Kami terus berupaya memberikan solusi yang tepat sesuai
+kebutuhan klien serta menjalankan setiap pekerjaan secara
+profesional dan bertanggung jawab.
+</p>
+
+<p>
+Dengan semangat untuk terus berkembang, kami membangun
+hubungan kerja jangka panjang berdasarkan kepercayaan
+dan profesionalisme.
+</p>
+
+</div>
+
+<div class="info-box">
+<h3>Komitmen Kami</h3>
+<p>
+Memberikan pelayanan terbaik dengan standar kerja yang
+profesional, transparan, tepat waktu, dan berorientasi
+pada kepuasan klien.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section id="layanan">
+<div class="container">
+
+<div class="section-title">
+<small>Layanan</small>
+<h2>Layanan Profesional Kami</h2>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🏢</div>
+<h3>Jasa Konsultasi</h3>
+<p>
+Memberikan layanan konsultasi profesional sesuai
+kebutuhan dan ruang lingkup pekerjaan.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📋</div>
+<h3>Pengawasan</h3>
+<p>
+Mendukung proses pengawasan pekerjaan agar berjalan
+sesuai standar, rencana, dan ketentuan yang berlaku.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🛠️</div>
+<h3>Jasa Profesional</h3>
+<p>
+Memberikan solusi dan dukungan profesional untuk
+membantu klien mencapai tujuan pekerjaan.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="legal" id="legalitas">
+<div class="container">
+
+<div class="section-title">
+<small>Legalitas</small>
+<h2>Legalitas Perusahaan</h2>
+</div>
+
+<div class="legal-grid">
+
+<div class="legal-item">
+<strong>Nama Perusahaan</strong>
+PT. Cahaya Musi Lestari
+</div>
+
+<div class="legal-item">
+<strong>Status</strong>
+Perseroan Terbatas (PT)
+</div>
+
+<div class="legal-item">
+<strong>NIB</strong>
+Silakan tambahkan nomor NIB perusahaan
+</div>
+
+<div class="legal-item">
+<strong>KBLI</strong>
+Silakan tambahkan KBLI perusahaan
+</div>
+
+<div class="legal-item">
+<strong>SBU</strong>
+Silakan tambahkan data SBU perusahaan
+</div>
+
+<div class="legal-item">
+<strong>Dokumen Pendukung</strong>
+Legalitas dan dokumen perusahaan tersedia sesuai kebutuhan.
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section class="contact" id="kontak">
+<div class="container">
+
+<div class="section-title">
+<small>Hubungi Kami</small>
+<h2>Siap Bekerja Sama?</h2>
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<h3>📍 Alamat</h3>
+<p>
+Tambahkan alamat kantor PT. Cahaya Musi Lestari
+di sini.
+</p>
+</div>
+
+<div class="contact-card">
+<h3>📞 Telepon</h3>
+<p>
+Tambahkan nomor telepon perusahaan di sini.
+</p>
+</div>
+
+<div class="contact-card">
+<h3>✉️ Email</h3>
+<p>
+Tambahkan email perusahaan di sini.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<footer>
+© 2026 PT. Cahaya Musi Lestari. All Rights Reserved.
+</footer>
+
+
+<!-- GANTI NOMOR DI BAWAH DENGAN NOMOR WHATSAPP PERUSAHAAN -->
+<a class="whatsapp"
+href="https://wa.me/628xxxxxxxxxx"
+target="_blank"
+title="Hubungi melalui WhatsApp">
+☎
+</a>
+
+</body>
+</html>
