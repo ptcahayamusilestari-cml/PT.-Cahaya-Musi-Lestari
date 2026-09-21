@@ -7,6 +7,18 @@
 <title>PT. Cahaya Musi Lestari</title>
 
 <style>
+:root{
+    --merah:#9f1728;
+    --merah-gelap:#70101d;
+    --emas:#c9a227;
+    --emas-muda:#e5ca68;
+    --hitam:#171717;
+    --abu:#666;
+    --putih:#ffffff;
+    --cream:#faf8f3;
+    --border:#ece7dc;
+}
+
 *{
     margin:0;
     padding:0;
@@ -16,553 +28,979 @@
 
 body{
     font-family:Arial, Helvetica, sans-serif;
-    color:#263238;
-    background:#f7faf9;
+    color:var(--hitam);
+    background:var(--putih);
     line-height:1.7;
 }
 
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:min(1120px, 92%);
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
+
 header{
-    position:fixed;
+    position:sticky;
     top:0;
-    width:100%;
     z-index:1000;
     background:rgba(255,255,255,.96);
-    box-shadow:0 2px 15px rgba(0,0,0,.08);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #eee;
 }
 
 .navbar{
-    max-width:1150px;
-    margin:auto;
-    padding:15px 25px;
+    min-height:78px;
     display:flex;
+    align-items:center;
     justify-content:space-between;
-    align-items:center;
+    gap:25px;
 }
 
-.logo{
+.brand{
     display:flex;
     align-items:center;
-    gap:12px;
-    font-weight:bold;
-    color:#0b6b57;
-    font-size:18px;
+    gap:13px;
 }
 
-.logo-circle{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#0b6b57,#d5a928);
+.brand img{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.brand-text strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:.5px;
+}
+
+.brand-text span{
+    font-size:11px;
+    color:var(--merah);
+    letter-spacing:1.5px;
+}
+
+nav{
     display:flex;
     align-items:center;
-    justify-content:center;
-    color:white;
-    font-weight:bold;
+    gap:27px;
 }
 
 nav a{
-    text-decoration:none;
-    color:#344;
-    margin-left:22px;
     font-size:14px;
     font-weight:600;
+    color:#444;
+    position:relative;
+    padding:7px 0;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:2px;
+    background:var(--emas);
+    transition:.3s;
 }
 
 nav a:hover{
-    color:#0b8068;
+    color:var(--merah);
 }
 
-.hero{
-    min-height:100vh;
-    padding:150px 25px 80px;
-    display:flex;
-    align-items:center;
-    background:
-    linear-gradient(rgba(5,64,52,.88),rgba(5,64,52,.78)),
-    linear-gradient(135deg,#0b6b57,#173f36);
-    color:white;
-}
-
-.hero-content{
-    max-width:1100px;
-    margin:auto;
+nav a:hover::after{
     width:100%;
 }
 
-.badge{
-    display:inline-block;
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.3);
-    padding:7px 16px;
-    border-radius:30px;
+.menu-toggle{
+    display:none;
+    border:none;
+    background:var(--merah);
+    color:white;
+    font-size:22px;
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:calc(100vh - 78px);
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(201,162,39,.14), transparent 28%),
+        linear-gradient(135deg,#fff 0%,#fffaf4 100%);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    border:1px solid rgba(201,162,39,.25);
+    border-radius:50%;
+    right:-160px;
+    top:-100px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border:1px solid rgba(159,23,40,.12);
+    border-radius:50%;
+    right:30px;
+    bottom:-150px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:70px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+.hero-label{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    color:var(--merah);
     font-size:13px;
-    margin-bottom:20px;
+    font-weight:bold;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.hero-label::before{
+    content:"";
+    width:32px;
+    height:2px;
+    background:var(--emas);
 }
 
 .hero h1{
-    font-size:clamp(38px,6vw,70px);
-    line-height:1.1;
-    max-width:850px;
-    margin-bottom:22px;
+    font-size:clamp(38px,5vw,68px);
+    line-height:1.08;
+    margin-bottom:23px;
+    letter-spacing:-2px;
 }
 
 .hero h1 span{
-    color:#f1c84b;
+    color:var(--merah);
 }
 
 .hero p{
-    max-width:700px;
-    font-size:18px;
-    opacity:.92;
+    max-width:650px;
+    color:#666;
+    font-size:17px;
     margin-bottom:32px;
 }
 
 .buttons{
     display:flex;
-    gap:14px;
     flex-wrap:wrap;
+    gap:13px;
 }
 
 .btn{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
     padding:13px 23px;
-    border-radius:30px;
-    text-decoration:none;
+    border-radius:8px;
+    font-size:14px;
     font-weight:bold;
+    transition:.3s;
 }
 
 .btn-primary{
-    background:#f1c84b;
-    color:#26351f;
-}
-
-.btn-secondary{
-    border:1px solid white;
+    background:var(--merah);
     color:white;
+    box-shadow:0 10px 25px rgba(159,23,40,.18);
 }
 
-section{
-    padding:90px 25px;
+.btn-primary:hover{
+    background:var(--merah-gelap);
+    transform:translateY(-2px);
 }
 
-.container{
-    max-width:1100px;
-    margin:auto;
+.btn-outline{
+    border:1px solid var(--border);
+    background:white;
+    color:var(--hitam);
 }
 
-.section-title{
+.btn-outline:hover{
+    border-color:var(--emas);
+    color:var(--merah);
+}
+
+.hero-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:45px;
+    min-height:390px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    margin-bottom:50px;
+    box-shadow:0 25px 70px rgba(0,0,0,.08);
+    position:relative;
 }
 
-.section-title small{
-    color:#0b8068;
-    font-weight:bold;
-    text-transform:uppercase;
+.hero-card::before{
+    content:"";
+    position:absolute;
+    width:90%;
+    height:90%;
+    border:1px solid rgba(201,162,39,.25);
+    border-radius:22px;
+}
+
+.hero-card img{
+    width:min(250px,75%);
+    max-height:230px;
+    object-fit:contain;
+    position:relative;
+    z-index:2;
+}
+
+.hero-card strong{
+    position:relative;
+    z-index:2;
+    margin-top:20px;
+    font-size:15px;
     letter-spacing:2px;
 }
 
-.section-title h2{
-    font-size:36px;
-    margin-top:8px;
-    color:#183d35;
+.hero-card small{
+    position:relative;
+    z-index:2;
+    color:var(--merah);
+    margin-top:4px;
 }
 
+/* ================= SECTION ================= */
+
+section{
+    padding:95px 0;
+}
+
+.section-head{
+    max-width:700px;
+    margin-bottom:45px;
+}
+
+.section-label{
+    color:var(--merah);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.section-title{
+    font-size:clamp(30px,4vw,45px);
+    line-height:1.15;
+    margin-bottom:15px;
+}
+
+.section-desc{
+    color:var(--abu);
+}
+
+/* ================= TENTANG ================= */
+
 .about{
-    background:white;
+    background:var(--cream);
 }
 
 .about-grid{
     display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:45px;
+    grid-template-columns:.85fr 1.15fr;
+    gap:70px;
     align-items:center;
 }
 
-.about-text p{
-    margin-bottom:16px;
+.about-box{
+    background:var(--merah);
+    color:white;
+    padding:45px;
+    border-radius:25px;
+    position:relative;
+    overflow:hidden;
 }
 
-.info-box{
-    background:#f0f7f4;
-    border-left:5px solid #0b8068;
-    padding:25px;
-    border-radius:12px;
+.about-box::after{
+    content:"CML";
+    position:absolute;
+    font-size:100px;
+    font-weight:bold;
+    color:rgba(255,255,255,.07);
+    right:-10px;
+    bottom:-25px;
 }
 
-.cards{
+.about-box h3{
+    font-size:27px;
+    margin-bottom:15px;
+}
+
+.about-box p{
+    color:rgba(255,255,255,.85);
+    position:relative;
+    z-index:2;
+}
+
+.about-content p{
+    color:#666;
+    margin-bottom:20px;
+}
+
+/* ================= LAYANAN ================= */
+
+.services-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
 }
 
-.card{
-    background:white;
-    padding:30px 25px;
+.service-card{
+    padding:30px 24px;
+    border:1px solid var(--border);
     border-radius:18px;
-    box-shadow:0 8px 30px rgba(0,0,0,.07);
+    background:white;
     transition:.3s;
 }
 
-.card:hover{
+.service-card:hover{
     transform:translateY(-7px);
+    border-color:var(--emas-muda);
+    box-shadow:0 18px 45px rgba(0,0,0,.07);
 }
 
-.icon{
-    width:55px;
-    height:55px;
-    border-radius:15px;
-    background:#e5f3ef;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    margin-bottom:18px;
+.service-number{
+    font-size:12px;
+    color:var(--emas);
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
-.card h3{
-    color:#155c4d;
+.service-card h3{
+    font-size:18px;
     margin-bottom:10px;
 }
 
+.service-card p{
+    color:#777;
+    font-size:14px;
+}
+
+/* ================= LEGALITAS ================= */
+
 .legal{
-    background:#eef6f3;
+    background:#171717;
+    color:white;
+}
+
+.legal .section-desc{
+    color:#aaa;
 }
 
 .legal-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-.legal-item{
-    background:white;
-    padding:22px;
-    border-radius:14px;
+.legal-card{
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    padding:30px;
+    background:rgba(255,255,255,.04);
 }
 
-.legal-item strong{
-    display:block;
-    color:#0b6b57;
-    margin-bottom:5px;
+.legal-card h3{
+    color:var(--emas-muda);
+    margin-bottom:10px;
 }
+
+.legal-card p{
+    color:#bbb;
+    font-size:14px;
+}
+
+/* ================= KONTAK ================= */
 
 .contact{
-    background:#123f35;
-    color:white;
-}
-
-.contact .section-title h2{
-    color:white;
+    background:var(--cream);
 }
 
 .contact-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:18px;
 }
 
 .contact-card{
-    background:rgba(255,255,255,.09);
-    padding:25px;
-    border-radius:16px;
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    border:1px solid var(--border);
 }
 
-.contact-card h3{
-    color:#f1c84b;
-    margin-bottom:8px;
-}
-
-footer{
-    background:#092b25;
-    color:white;
-    text-align:center;
-    padding:25px;
-    font-size:14px;
-}
-
-.whatsapp{
-    position:fixed;
-    right:22px;
-    bottom:22px;
-    width:58px;
-    height:58px;
-    border-radius:50%;
-    background:#25D366;
-    color:white;
+.contact-icon{
+    width:45px;
+    height:45px;
+    border-radius:12px;
     display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    font-size:27px;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
-    z-index:999;
+    background:rgba(159,23,40,.08);
+    color:var(--merah);
+    font-weight:bold;
+    margin-bottom:18px;
 }
 
-@media(max-width:800px){
+.contact-card h3{
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.contact-card p{
+    color:#777;
+    font-size:14px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#101010;
+    color:white;
+    padding:30px 0;
+}
+
+.footer-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-brand{
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+
+.footer-copy{
+    color:#888;
+    font-size:12px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
     nav{
+        position:absolute;
+        top:78px;
+        left:0;
+        right:0;
+        background:white;
+        padding:20px 5%;
         display:none;
+        flex-direction:column;
+        align-items:flex-start;
+        border-bottom:1px solid #eee;
+        box-shadow:0 15px 30px rgba(0,0,0,.06);
     }
 
-    .about-grid,
-    .cards,
-    .legal-grid,
-    .contact-grid{
+    nav.active{
+        display:flex;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .hero-grid,
+    .about-grid{
         grid-template-columns:1fr;
+        gap:45px;
     }
 
     .hero{
-        padding-top:130px;
+        padding:70px 0;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:70px 0;
+    }
+
+    .brand-text strong{
+        font-size:12px;
+    }
+
+    .brand-text span{
+        font-size:9px;
+    }
+
+    .hero h1{
+        font-size:40px;
     }
 
     .hero p{
-        font-size:16px;
+        font-size:15px;
     }
 
-    section{
-        padding:70px 20px;
+    .hero-card{
+        padding:30px;
+        min-height:330px;
     }
- .logo-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 10px;
-    display: block;
+
+    .services-grid,
+    .legal-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-box{
+        padding:32px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
 }
 </style>
-   
 </head>
 
+<body>
 
-
-    
+<!-- ================= HEADER ================= -->
 
 <header>
-<div class="navbar">
+    <div class="container navbar">
 
-<div class="logo">
-<img src="LOGO%20CML.jpeg" alt="Logo PT Cahaya Musi Lestari" class="logo-img">
-PT. CAHAYA MUSI LESTARI
-</div>
+        <a href="#beranda" class="brand">
+            <img src="./LOGO%20CML.jpeg" alt="Logo PT Cahaya Musi Lestari">
 
-<nav>
-<a href="#beranda">Beranda</a>
-<a href="#tentang">Tentang</a>
-<a href="#layanan">Layanan</a>
-<a href="#legalitas">Legalitas</a>
-<a href="#kontak">Kontak</a>
-</nav>
+            <div class="brand-text">
+                <strong>PT. CAHAYA MUSI LESTARI</strong>
+                <span>PROFESSIONAL • TRUSTED • INTEGRITY</span>
+            </div>
+        </a>
 
-</div>
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Buka menu">
+            ☰
+        </button>
+
+        <nav id="navMenu">
+            <a href="#beranda">Beranda</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#layanan">Layanan</a>
+            <a href="#legalitas">Legalitas</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+
+    </div>
 </header>
 
 
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="beranda">
-<div class="hero-content">
 
-<div class="badge">PROFESIONAL • TERPERCAYA • BERKUALITAS</div>
+    <div class="container hero-grid">
 
-<h1>
-PT. <span>Cahaya Musi Lestari</span>
-</h1>
+        <div>
 
-<p>
-Mitra profesional dalam memberikan layanan jasa yang
-mengutamakan kualitas, ketepatan, integritas, dan kepuasan klien.
-</p>
+            <div class="hero-label">
+                PT. CAHAYA MUSI LESTARI
+            </div>
 
-<div class="buttons">
-<a href="#tentang" class="btn btn-primary">Kenali Perusahaan</a>
-<a href="#kontak" class="btn btn-secondary">Hubungi Kami</a>
-</div>
+            <h1>
+                Membangun Kepercayaan
+                Melalui <span>Layanan Profesional.</span>
+            </h1>
 
-</div>
+            <p>
+                Selamat datang di website resmi PT. Cahaya Musi Lestari.
+                Kami berkomitmen menghadirkan layanan profesional dengan
+                mengutamakan kualitas, ketelitian, dan kebutuhan setiap klien.
+            </p>
+
+            <div class="buttons">
+                <a href="#layanan" class="btn btn-primary">
+                    Lihat Layanan
+                </a>
+
+                <a href="#kontak" class="btn btn-outline">
+                    Hubungi Kami
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <img
+                src="./LOGO%20CML.jpeg"
+                alt="Logo PT Cahaya Musi Lestari"
+            >
+
+            <strong>CAHAYA MUSI LESTARI</strong>
+            <small>Professional Business Partner</small>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+<!-- ================= TENTANG ================= -->
 
 <section class="about" id="tentang">
-<div class="container">
 
-<div class="section-title">
-<small>Tentang Kami</small>
-<h2>Membangun Kepercayaan</h2>
-</div>
+    <div class="container about-grid">
 
-<div class="about-grid">
+        <div class="about-box">
 
-<div class="about-text">
+            <h3>Tentang CML</h3>
 
-<p>
-<strong>PT. Cahaya Musi Lestari</strong> merupakan perusahaan
-yang berkomitmen memberikan pelayanan profesional dengan
-mengedepankan kualitas, integritas, dan tanggung jawab.
-</p>
+            <p>
+                PT. Cahaya Musi Lestari hadir sebagai perusahaan yang
+                mengedepankan profesionalisme, ketelitian, dan hubungan
+                kerja yang baik dengan setiap klien.
+            </p>
 
-<p>
-Kami terus berupaya memberikan solusi yang tepat sesuai
-kebutuhan klien serta menjalankan setiap pekerjaan secara
-profesional dan bertanggung jawab.
-</p>
+        </div>
 
-<p>
-Dengan semangat untuk terus berkembang, kami membangun
-hubungan kerja jangka panjang berdasarkan kepercayaan
-dan profesionalisme.
-</p>
 
-</div>
+        <div class="about-content">
 
-<div class="info-box">
-<h3>Komitmen Kami</h3>
-<p>
-Memberikan pelayanan terbaik dengan standar kerja yang
-profesional, transparan, tepat waktu, dan berorientasi
-pada kepuasan klien.
-</p>
-</div>
+            <div class="section-label">
+                TENTANG PERUSAHAAN
+            </div>
 
-</div>
-</div>
+            <h2 class="section-title">
+                Profesional dalam setiap proses.
+            </h2>
+
+            <p>
+                Kami memahami bahwa setiap pekerjaan membutuhkan proses
+                yang terencana, komunikasi yang jelas, serta pelaksanaan
+                yang bertanggung jawab.
+            </p>
+
+            <p>
+                Karena itu, PT. Cahaya Musi Lestari terus berupaya
+                memberikan layanan yang disesuaikan dengan kebutuhan
+                pekerjaan dan klien.
+            </p>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+<!-- ================= LAYANAN ================= -->
 
 <section id="layanan">
-<div class="container">
 
-<div class="section-title">
-<small>Layanan</small>
-<h2>Layanan Profesional Kami</h2>
-</div>
+    <div class="container">
 
-<div class="cards">
+        <div class="section-head">
 
-<div class="card">
-<div class="icon">🏢</div>
-<h3>Jasa Konsultasi</h3>
-<p>
-Memberikan layanan konsultasi profesional sesuai
-kebutuhan dan ruang lingkup pekerjaan.
-</p>
-</div>
+            <div class="section-label">
+                LAYANAN
+            </div>
 
-<div class="card">
-<div class="icon">📋</div>
-<h3>Pengawasan</h3>
-<p>
-Mendukung proses pengawasan pekerjaan agar berjalan
-sesuai standar, rencana, dan ketentuan yang berlaku.
-</p>
-</div>
+            <h2 class="section-title">
+                Ruang Lingkup Layanan
+            </h2>
 
-<div class="card">
-<div class="icon">🛠️</div>
-<h3>Jasa Profesional</h3>
-<p>
-Memberikan solusi dan dukungan profesional untuk
-membantu klien mencapai tujuan pekerjaan.
-</p>
-</div>
+            <p class="section-desc">
+                Informasi layanan berikut merupakan tampilan awal website
+                dan dapat disesuaikan dengan bidang usaha serta layanan
+                resmi PT. Cahaya Musi Lestari.
+            </p>
 
-</div>
-</div>
+        </div>
+
+
+        <div class="services-grid">
+
+            <div class="service-card">
+                <div class="service-number">01</div>
+                <h3>Konsultasi Profesional</h3>
+                <p>
+                    Pendampingan dan konsultasi sesuai kebutuhan pekerjaan
+                    dan bidang layanan perusahaan.
+                </p>
+            </div>
+
+
+            <div class="service-card">
+                <div class="service-number">02</div>
+                <h3>Pendampingan Pekerjaan</h3>
+                <p>
+                    Dukungan profesional dalam proses pelaksanaan pekerjaan
+                    sesuai ruang lingkup yang disepakati.
+                </p>
+            </div>
+
+
+            <div class="service-card">
+                <div class="service-number">03</div>
+                <h3>Pengawasan & Administrasi</h3>
+                <p>
+                    Pengelolaan proses dan dokumentasi pekerjaan secara
+                    terstruktur dan profesional.
+                </p>
+            </div>
+
+
+            <div class="service-card">
+                <div class="service-number">04</div>
+                <h3>Solusi Terintegrasi</h3>
+                <p>
+                    Solusi yang dapat disesuaikan dengan kebutuhan dan
+                    karakteristik pekerjaan klien.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+<!-- ================= LEGALITAS ================= -->
 
 <section class="legal" id="legalitas">
-<div class="container">
 
-<div class="section-title">
-<small>Legalitas</small>
-<h2>Legalitas Perusahaan</h2>
-</div>
+    <div class="container">
 
-<div class="legal-grid">
+        <div class="section-head">
 
-<div class="legal-item">
-<strong>Nama Perusahaan</strong>
-PT. Cahaya Musi Lestari
-</div>
+            <div class="section-label">
+                LEGALITAS & KREDIBILITAS
+            </div>
 
-<div class="legal-item">
-<strong>Status</strong>
-Perseroan Terbatas (PT)
-</div>
+            <h2 class="section-title">
+                Informasi Legalitas Perusahaan
+            </h2>
 
-<div class="legal-item">
-<strong>NIB</strong>
-Silakan tambahkan nomor NIB perusahaan
-</div>
+            <p class="section-desc">
+                Area ini disiapkan untuk menampilkan informasi legalitas
+                dan dokumen perusahaan yang relevan.
+            </p>
 
-<div class="legal-item">
-<strong>KBLI</strong>
-Silakan tambahkan KBLI perusahaan
-</div>
+        </div>
 
-<div class="legal-item">
-<strong>SBU</strong>
-Silakan tambahkan data SBU perusahaan
-</div>
 
-<div class="legal-item">
-<strong>Dokumen Pendukung</strong>
-Legalitas dan dokumen perusahaan tersedia sesuai kebutuhan.
-</div>
+        <div class="legal-grid">
 
-</div>
-</div>
+            <div class="legal-card">
+                <h3>NIB & Perizinan</h3>
+                <p>
+                    Informasi NIB dan perizinan perusahaan dapat ditampilkan
+                    pada bagian ini.
+                </p>
+            </div>
+
+
+            <div class="legal-card">
+                <h3>Sertifikat & SBU</h3>
+                <p>
+                    Sertifikat, SBU, atau dokumen kompetensi perusahaan
+                    dapat ditampilkan sesuai bidang usaha.
+                </p>
+            </div>
+
+
+            <div class="legal-card">
+                <h3>Dokumen Perusahaan</h3>
+                <p>
+                    Informasi akta, NPWP, dan dokumen pendukung lainnya
+                    dapat ditambahkan di sini.
+                </p>
+            </div>
+
+
+            <div class="legal-card">
+                <h3>Komitmen Profesional</h3>
+                <p>
+                    Kami mengutamakan proses kerja yang tertib,
+                    transparan, dan sesuai ketentuan yang berlaku.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+<!-- ================= KONTAK ================= -->
 
 <section class="contact" id="kontak">
-<div class="container">
 
-<div class="section-title">
-<small>Hubungi Kami</small>
-<h2>Siap Bekerja Sama?</h2>
-</div>
+    <div class="container">
 
-<div class="contact-grid">
+        <div class="section-head">
 
-<div class="contact-card">
-<h3>📍 Alamat</h3>
-<p>
-Tambahkan alamat kantor PT. Cahaya Musi Lestari
-di sini.
-</p>
-</div>
+            <div class="section-label">
+                KONTAK
+            </div>
 
-<div class="contact-card">
-<h3>📞 Telepon</h3>
-<p>
-Tambahkan nomor telepon perusahaan di sini.
-</p>
-</div>
+            <h2 class="section-title">
+                Mari Terhubung dengan Kami
+            </h2>
 
-<div class="contact-card">
-<h3>✉️ Email</h3>
-<p>
-Tambahkan email perusahaan di sini.
-</p>
-</div>
+            <p class="section-desc">
+                Informasi kontak resmi perusahaan dapat ditambahkan pada
+                bagian ini.
+            </p>
 
-</div>
+        </div>
 
-</div>
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    WA
+                </div>
+
+                <h3>WhatsApp</h3>
+
+                <p>
+                    Tambahkan nomor WhatsApp resmi perusahaan di sini.
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    @
+                </div>
+
+                <h3>Email</h3>
+
+                <p>
+                    Tambahkan email resmi PT. Cahaya Musi Lestari di sini.
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <h3>Alamat</h3>
+
+                <p>
+                    Tambahkan alamat kantor/perusahaan di sini.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
-© 2026 PT. Cahaya Musi Lestari. All Rights Reserved.
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            PT. CAHAYA MUSI LESTARI
+        </div>
+
+        <div class="footer-copy">
+            © <span id="year"></span> PT. Cahaya Musi Lestari. All Rights Reserved.
+        </div>
+
+    </div>
+
 </footer>
 
 
-<!-- GANTI NOMOR DI BAWAH DENGAN NOMOR WHATSAPP PERUSAHAAN -->
-<a class="whatsapp"
-href="https://wa.me/628xxxxxxxxxx"
-target="_blank"
-title="Hubungi melalui WhatsApp">
-☎
-</a>
+<script>
+
+function toggleMenu(){
+
+    const menu = document.getElementById("navMenu");
+
+    menu.classList.toggle("active");
+
+}
+
+
+document.querySelectorAll("#navMenu a").forEach(function(link){
+
+    link.addEventListener("click", function(){
+
+        document.getElementById("navMenu").classList.remove("active");
+
+    });
+
+});
+
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
 
 </body>
 </html>
